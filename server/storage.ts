@@ -298,7 +298,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(posts)
       .where(and(eq(posts.id, id), eq(posts.userId, userId)));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   // Like operations
@@ -314,7 +314,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(likes)
       .where(and(eq(likes.userId, userId), eq(likes.postId, postId)));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   async isPostLiked(userId: string, postId: number): Promise<boolean> {
@@ -359,7 +359,7 @@ export class DatabaseStorage implements IStorage {
     const result = await db
       .delete(follows)
       .where(and(eq(follows.followerId, followerId), eq(follows.followingId, followingId)));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   async isFollowing(followerId: string, followingId: string): Promise<boolean> {
@@ -454,7 +454,7 @@ export class DatabaseStorage implements IStorage {
       .update(notifications)
       .set({ read: true })
       .where(eq(notifications.id, id));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 }
 

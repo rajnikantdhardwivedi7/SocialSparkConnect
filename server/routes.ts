@@ -238,6 +238,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           userId: followingId,
           fromUserId: followerId,
           type: 'follow',
+          postId: null,
           message: 'started following you.',
           read: false,
         });
