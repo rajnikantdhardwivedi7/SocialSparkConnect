@@ -23,7 +23,7 @@ import {
   type NotificationWithDetails,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, and, sql, ne, gte } from "drizzle-orm";
+import { eq, desc, and, sql, ne, gte, or } from "drizzle-orm";
 
 export interface IStorage {
   // User operations (required for Replit Auth)
@@ -181,13 +181,16 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getFeedPosts(userId: string, limit = 20): Promise<PostWithDetails[]> {
-    // Get posts from followed users
+    // Get posts from followed users AND user's own posts
     const feedPosts = await db
       .select()
       .from(posts)
       .leftJoin(users, eq(posts.userId, users.id))
       .leftJoin(follows, eq(follows.followingId, posts.userId))
-      .where(eq(follows.followerId, userId))
+      .where(or(
+        eq(follows.followerId, userId), // Posts from followed users
+        eq(posts.userId, userId) // User's own posts
+      ))
       .orderBy(desc(posts.createdAt))
       .limit(limit);
 
