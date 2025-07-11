@@ -2,7 +2,7 @@ import { db } from "./db";
 import { users, posts, follows, likes, comments } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
-const RAJNIKANT_USER_ID = "rajnikant_user_id";
+const RAJNIKANT_USER_ID = "44858376"; // Using your actual user ID from auth
 
 // Sample users data
 const sampleUsers = [
@@ -79,13 +79,13 @@ async function seedDatabase() {
     if (existingUser) {
       console.log("✅ Rajnikant's profile already exists");
     } else {
-      // Create Rajnikant's profile
+      // Create Rajnikant's profile using the auth user ID
       await db.insert(users).values({
         id: RAJNIKANT_USER_ID,
-        email: "rajnikant@example.com",
+        email: "trivediramanuyg@gmail.com", // Using the actual email from auth
         username: "rajnikant_dhar_dwivedi",
         firstName: "Rajnikant",
-        lastName: "Dhar Dwivedi",
+        lastName: "Dhar Dwivedi", 
         profileImageUrl: "/attached_assets/IMG_20250607_015958_1752226457326.jpg",
         bio: "Full-stack developer passionate about creating amazing web experiences 🚀\nBuilding the future, one line of code at a time.",
         website: "https://github.com/rajnikant",
