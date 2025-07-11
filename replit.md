@@ -8,6 +8,15 @@ This is a full-stack Instagram clone application built with a modern tech stack.
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (July 11, 2025)
+
+✓ Successfully implemented complete Instagram clone with authentication
+✓ Set up Rajnikant Dhar Dwivedi as primary user with profile photo
+✓ Created sample users (Emma, Alex, Sarah) with realistic posts and interactions
+✓ Fixed authentication flow and feed logic to show posts correctly
+✓ Established follow relationships and social interactions
+✓ Database properly seeded with engaging content for demonstration
+
 ## System Architecture
 
 ### Frontend Architecture
